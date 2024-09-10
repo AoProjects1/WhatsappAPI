@@ -1,3 +1,4 @@
+import { response } from "express";
 import mongoose from "mongoose";
 
 const userOrderSchema = mongoose.Schema(
@@ -7,12 +8,17 @@ const userOrderSchema = mongoose.Schema(
       required: true,
     },
     orderId: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     phoneNumber: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
+    },
+    responsed: {
+      type: Boolean,
+      default: false,
+      required: true,
     },
   },
   { timestamps: true }
