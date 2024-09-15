@@ -6,6 +6,7 @@ const { MessageMedia } = pkg;
 const clients = {};
 
 export function startClient(id) {
+  try {
   clients[id] = new Client({
     authStrategy: new LocalAuth({
       clientId: id,
@@ -68,13 +69,21 @@ export function startClient(id) {
       console.error(error);
     }
   });
+} catch (error) {
+  console.log(error);
+}
 }
 
 export async function sendMessage(phoneNumber, message, clientId) {
+  try {
   // if(file) {
   //     const messageFile = new MessageMedia(file.mimetype, file.buffer.toString('base64'))
   //     clients[Number(clientId)].sendMessage(phoneNumber, messageFile)
   // } else {
   clients[clientId].sendMessage(phoneNumber, message);
   // }
+}catch (error) {
+  console.log(error);
 }
+}
+
