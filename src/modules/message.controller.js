@@ -42,7 +42,8 @@ let newUserOrder = new userOrderModel({
 
 let cairoDate = egyptDate
 cairoDate.setMinutes(cairoDate.getMinutes() +1 );
-
+ console.log(cairoDate,"ca");
+ 
   const cronExpression = `${cairoDate.getMinutes()} ${cairoDate.getHours()} * * *`;  
 const task = cron.schedule(cronExpression, async () => {
   try {
