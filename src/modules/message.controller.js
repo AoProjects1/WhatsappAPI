@@ -10,17 +10,23 @@ const createMessage = catchAsync(async (req, res, next) => {
   sendMessage(req.body.phoneNumber, req.body.message, clientId);
 
   let { phoneNumber, orderId } = req.body;
-  const date = new Date(newUserOrder.date);
+  const dateWithTimeZone = (timeZone, year, month, day, hour, minute, second) => {
+    let date = new Date(Date.UTC(year, month, day, hour, minute, second));
+    return new Date(date.toLocaleString('en-US', { timeZone: timeZone }));
+  };
+  
+  const date = new Date.now();
   date.setMinutes(date.getMinutes() + 1);
   // date.setHours(date.getHours() + 8);
 
   const year = date.getUTCFullYear();
-  const month = date.getUTCMonth(); 
+  const month = date.getUTCMonth() ; 
   const day = date.getUTCDate();
   const hour = date.getUTCHours();
   const minute = date.getUTCMinutes();
   const second = date.getUTCSeconds();
   let cairoDate = dateWithTimeZone('Africa/Cairo', year, month, day, hour, minute, second);
+
 let newUserOrder = new userOrderModel({
    phoneNumber ,
    orderId,
@@ -33,11 +39,6 @@ let newUserOrder = new userOrderModel({
     message: "User Order created successfully!",
     newUserOrder,
   });
-  const dateWithTimeZone = (timeZone, year, month, day, hour, minute, second) => {
-    let date = new Date(Date.UTC(year, month, day, hour, minute, second));
-    return new Date(date.toLocaleString('en-US', { timeZone: timeZone }));
-  };
-  
 
   console.log(cairoDate,"cairoDate");
   
