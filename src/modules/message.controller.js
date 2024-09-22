@@ -15,7 +15,7 @@ const createMessage = catchAsync(async (req, res, next) => {
     return new Date(date.toLocaleString('en-US', { timeZone: timeZone }));
   };
   
-  const date = new Date.now();
+  const date = new Date();
   date.setMinutes(date.getMinutes() + 1);
   // date.setHours(date.getHours() + 8);
 
