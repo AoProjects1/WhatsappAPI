@@ -39,6 +39,8 @@ let newUserOrder = new userOrderModel({
   const minute = date.getUTCMinutes();
   const second = date.getUTCSeconds();
   let cairoDate = dateWithTimeZone('Africa/Cairo', year, month, day, hour, minute, second);
+  console.log(cairoDate,"cairoDate");
+  
   const cronExpression = `${cairoDate.getMinutes()} ${cairoDate.getHours()} * * *`;  
 const task = cron.schedule(cronExpression, async () => {
   try {
