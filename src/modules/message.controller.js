@@ -16,7 +16,7 @@ const createMessage = catchAsync(async (req, res, next) => {
   };
   
   const date = new Date();
-  date.setMinutes(date.getMinutes() + 1);
+  date.setMinutes(date.getMinutes() );
   // date.setHours(date.getHours() + 8);
 
   const year = date.getUTCFullYear();
@@ -25,13 +25,13 @@ const createMessage = catchAsync(async (req, res, next) => {
   const hour = date.getUTCHours();
   const minute = date.getUTCMinutes();
   const second = date.getUTCSeconds();
-  let cairoDate = dateWithTimeZone('Africa/Cairo', year, month, day, hour, minute, second);
+  let egyptDate = dateWithTimeZone('Africa/Cairo', year, month, day, hour, minute, second);
 
 let newUserOrder = new userOrderModel({
    phoneNumber ,
    orderId,
    clientId,
-   date: cairoDate,
+   date: egyptDate,
    responsed: false
  })
  await newUserOrder.save()
@@ -40,8 +40,9 @@ let newUserOrder = new userOrderModel({
     newUserOrder,
   });
 
-  console.log(cairoDate,"cairoDate");
-  
+let cairoDate = egyptDate
+cairoDate.setMinutes(cairoDate.getMinutes() +1 );
+
   const cronExpression = `${cairoDate.getMinutes()} ${cairoDate.getHours()} * * *`;  
 const task = cron.schedule(cronExpression, async () => {
   try {
