@@ -15,7 +15,7 @@ let newUserOrder = new userOrderModel({
    phoneNumber ,
    orderId,
    clientId,
-   createdAt: new Date(),
+   date: new Date(),
    responsed: false
  })
  await newUserOrder.save()

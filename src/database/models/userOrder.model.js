@@ -17,8 +17,8 @@ const userOrderSchema = mongoose.Schema(
     },
     date: {
       type: Date,
-      default: Date.now,
-      required: true,
+      // default: Date.now,
+      // required: true,
     },
     responsed: {
       type: Boolean,
