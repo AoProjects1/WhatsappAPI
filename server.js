@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
-import { startClient } from "./services/WhatsappClient.js";
-import { globalError } from "./utils/globalError.js";
-import dbConnection from "./database/connection.js";
-import messageRouter from "./modules/message.routes.js";
+import { startClient } from "./src/services/WhatsappClient.js";
+import { globalError } from "./src/utils/globalError.js";
+import dbConnection from "./src/database/connection.js";
+import messageRouter from "./src/modules/message.routes.js";
 
 const app = express();
 const corsOptions = {
