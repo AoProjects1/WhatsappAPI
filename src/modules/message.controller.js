@@ -24,30 +24,11 @@ const createMessage = catchAsync(async (req, res, next) => {
   };
 
   const date = new Date();
-  date.setMinutes(date.getMinutes());
-  // date.setHours(date.getHours() + 8);
-
-  const year = date.getUTCFullYear();
-  const month = date.getUTCMonth();
-  const day = date.getUTCDate();
-  const hour = date.getUTCHours();
-  const minute = date.getUTCMinutes();
-  const second = date.getUTCSeconds();
-  let egyptDate = dateWithTimeZone(
-    "Africa/Cairo",
-    year,
-    month,
-    day,
-    hour,
-    minute,
-    second
-  );
 
   let newUserOrder = new userOrderModel({
     phoneNumber,
     orderId,
     clientId,
-    date: egyptDate,
     responsed: false,
   });
   await newUserOrder.save();
